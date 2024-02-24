@@ -1,0 +1,100 @@
+{
+	"layer": "top",
+	"position": "top",
+	"height": 30,
+	"margin-top": 3,
+	"margin-bottom": 0,
+	"margin-left": 3,
+	"margin-right": 3,
+
+	"modules-left": ["hyprland/workspaces"],
+	"modules-center": [
+		"custom/menu",
+		// "custom/sep",
+		"clock"
+		// "custom/sep",
+		// "hyprland/window"
+	],
+	"modules-right": [
+		// "custom/weather",
+    "backlight",
+		"pulseaudio",
+		"hyprland/language",
+		"tray",
+		"battery"
+    
+	],
+
+	// Left
+	"hyprland/workspaces": {
+		"format": "{icon}",
+		"on-click": "activate",
+		"format-icons": {
+			"1": "一",
+			"2": "二",
+			"3": "三",
+			"4": "四",
+			"5": "六"
+		},
+		"persistent_workspaces": {
+			"1": [],
+			"2": [],
+			"3": [],
+			"4": [],
+			"5": []
+		},
+		"all-outputs": true,
+		"sort-by-number": true
+	},
+
+	// Right
+"backlight": {
+    "device": "intel_backlight",
+    "format": "{percent}% {icon} ",
+    "format-icons": ["", ""]
+},
+	"pulseaudio": {
+		"format": "{volume}% {icon}",
+		"format-bluetooth": "{volume}% {icon}",
+		"format-muted": "",
+		"format-icons": {
+			"alsa_output.pci-0000_00_1f.3.analog-stereo": "",
+			"headphones": "",
+			"handsfree": "",
+			"headset": "",
+			"phone": "",
+			"portable": "",
+			"car": "",
+			"default": ["", "", " "]
+		},
+		"scroll-step": 1,
+		"on-click": "pamixer -t",
+		"on-click-middle": "pavucontrol"
+	},
+	"hyprland/language": {
+		"format": "{short}"
+	},
+	"tray": {
+		"icon-size": 18,
+		"spacing": 5
+	},
+	"battery": {
+		"bat": "BAT0",
+		"adapter": "BAT0",
+		"interval": 60,
+		"states": {
+			"warning": 30,
+			"critical": 15
+		},
+		"format": "{capacity}% {icon}",
+		"format-charging": "{capacity}% ",
+		"format-icons": [" ", " ", " ", " ", " "],
+		"max-length": 25
+	},
+	"clock": {
+		"interval": 60,
+		"format": "{:%H:%M}  ",
+		"format-alt": "{:%A, %B %d, %Y (%R)}  ",
+		"max-length": 25
+	}
+}
