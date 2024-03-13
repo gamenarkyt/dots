@@ -24,6 +24,9 @@ yay -S vlc visual-studio-code-bin telegram-desktop obsidian firefox qbittorrent 
 yay -S tlpui tlp
 ```
 
+## Fonts
+yay -S noto-fonts-sc ttf-jetbrains-mono-nerd ttf-firacode-nerd
+
 ## Prog
 - VSCodes
 - kitty
