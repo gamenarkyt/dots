@@ -15,7 +15,7 @@ cd $BUILDDIR && git clone https://aur.archlinux.org/yay-bin/ && cd yay-bin && ma
 
 ## Install base utils
 ```bash
-sudo pacman -S git bat btop neovim pfetch yt-dlp kitty --noconfirm
+yay -S git bat btop neovim pfetch yt-dlp kitty --noconfirm
 ```
 
 ## Install user apps
