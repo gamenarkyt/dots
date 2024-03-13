@@ -25,8 +25,9 @@ yay -S tlpui tlp
 ```
 
 ## Fonts
-yay -S noto-fonts-sc ttf-jetbrains-mono-nerd ttf-firacode-nerd
-
+```bash
+yay -S noto-fonts-sc ttf-jetbrains-mono-nerd ttf-firacode-nerd --noconfirm
+```
 ## Prog
 - VSCodes
 - kitty
