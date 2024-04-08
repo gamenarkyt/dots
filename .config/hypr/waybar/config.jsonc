@@ -1,11 +1,11 @@
 {
-	"layer": "top",
-	"position": "top",
+	"layer": "bottom",
+	"position": "bottom",
 	"height": 30,
-	"margin-top": 3,
+	"margin-top": 2,
 	"margin-bottom": 0,
-	"margin-left": 3,
-	"margin-right": 3,
+	"margin-left": 0,
+	"margin-right": 0,
 
 	"modules-left": ["hyprland/workspaces"],
 	"modules-center": [
@@ -17,12 +17,12 @@
 	],
 	"modules-right": [
 		// "custom/weather",
-    "backlight",
+		"backlight",
 		"pulseaudio",
 		"hyprland/language",
 		"tray",
-		"battery"
-    
+		"battery",
+		"custom/notification"
 	],
 
 	// Left
@@ -48,11 +48,11 @@
 	},
 
 	// Right
-"backlight": {
-    "device": "intel_backlight",
-    "format": "{percent}% {icon} ",
-    "format-icons": ["", ""]
-},
+	"backlight": {
+		"device": "intel_backlight",
+		"format": "{percent}% {icon} ",
+		"format-icons": ["", ""]
+	},
 	"pulseaudio": {
 		"format": "{volume}% {icon}",
 		"format-bluetooth": "{volume}% {icon}",
@@ -72,7 +72,8 @@
 		"on-click-middle": "pavucontrol"
 	},
 	"hyprland/language": {
-		"format": "{short}"
+		"format": "{short}",
+		"on-click": "hyprctl switchxkblayout at-translated-set-2-keyboard next"
 	},
 	"tray": {
 		"icon-size": 18,
@@ -96,5 +97,14 @@
 		"format": "{:%H:%M}  ",
 		"format-alt": "{:%A, %B %d, %Y (%R)}  ",
 		"max-length": 25
+	},
+	"custom/notification": {
+		"format": "{}  ",
+		"interval": 10,
+		"exec": "dunstctl count | grep \"[[:digit:]]\" -o | tail -1",
+		"on-click": "foot -T notifications -eH bash ~/.config/hypr/waybar/notifications.sh",
+		"on-click-middle": "dunstctl history-clear"
 	}
+
+	//
 }
