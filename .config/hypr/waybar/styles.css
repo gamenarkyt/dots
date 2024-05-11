@@ -1,68 +1,160 @@
-@define-color accent #bf8bff;
-@define-color accent-2 #b82a46;
-@define-color foreground #cccccc;
-@define-color background #101010;
-@define-color background-2 #151515;
+@define-color accent #6BBB7A;
+@define-color accent-2 #607767;
+@define-color foreground #B2BEBC;
+/* @define-color background #0F1212; */
+@define-color background #0F1818;
+@define-color background-2 #202222;
+
 
 * {
 	/* `otf-font-awesome` is required to be installed for icons */
-	font-family: FontAwesome, Roboto, Inter, JetBrainsMono Nerd Font, Arial,
-		sans-serif;
+	font-family: FontAwesome, Roboto, Inter, JetBrainsMono Nerd Font, Arial, sans-serif;
 	font-size: 13px;
 	color: @foreground;
 	padding: 2px 4px;
+
+
 }
 
 window#waybar {
 	background-color: @background;
-	border-bottom: none;
+	border: 2px solid @accent;
+	padding: 0;
+	margin: 0;
+	border-radius: 10px;
 	transition-property: background-color;
 	transition-duration: 0.5s;
 }
 
-#waybar.empty,
-#waybar.tiled,
-#waybar.floating #waybar {
+
+window#waybar.empty {
 	background-color: transparent;
 }
 
 #workspaces,
 #tray,
 #battery,
+#cpu,
 #clock,
+#temperature,
 #language,
 #pulseaudio,
 #backlight,
-#custom-notification {
+#power-profiles-daemon,
+#custom-notification,
+#custom-updates,
+#custom-weather,
+#custom-powermenu {
 	padding: 0 4px;
 	margin: 0 2px;
-	background-color: @background-2;
-	border-radius: 4px;
+	color: @foreground;
+	/* background-color: @background-2; */
+	/* border-radius: 4px; */
 	font-size: 1.2em;
 	font-weight: bold;
+	/* transition: all 0.2s; */
+
 }
 
 #workspaces button {
+	color: @foreground;
+	/* 	
 	transition-property: all;
-	transition-duration: 0.2s;
-	border: 1px solid transparent;
+	
+	transition-duration: 0.2s; */
+	border: 2px solid transparent;
+	border-radius: 50%;
+	transition: all 0.45s;
+
 }
 
 #workspaces:hover {
-	background-color: @accent;
+	background-color: transparent;
+	
+	/* color: red; */
+}
+
+#workspaces button:hover {
+	background-color: transparent;
 	color: red;
 }
 
+
 #workspaces button.active {
-	border: 1px solid @accent;
+	color: white;
+	border: 2px solid @accent-2;
 }
 
-#workspaces button.empty:not(.active) {
+#workspaces button:not(.empty):not(.active) {
 	border-bottom: 2px solid @accent-2;
-	border-bottom-left-radius: 10px;
-	border-bottom-right-radius: 10px;
+	border-radius: 0;
 }
+
+@keyframes animateRight {
+	0% {
+		border-image: linear-gradient(to bottom, rgba(107,187,122,1) 0%, rgba(15,24,24,1) 0%);
+	}
+
+	10% {
+		border-image: linear-gradient(to bottom, rgba(107,187,122,1) 10%, rgba(15,24,24,1) 0%);
+	}
+
+	20% {
+		border-image: linear-gradient(to bottom, rgba(107,187,122,1) 20%, rgba(15,24,24,1) 0%);
+	}
+
+	30% {
+		border-image: linear-gradient(to bottom, rgba(107,187,122,1) 30%, rgba(15,24,24,1) 0%);
+	}
+
+	40% {
+		border-image: linear-gradient(to bottom, rgba(107,187,122,1) 45%, rgba(15,24,24,1) 0%);
+	}
+
+	50% {
+		border-image: linear-gradient(to bottom, rgba(107,187,122,1) 55%, rgba(15,24,24,1) 0%);
+	}
+
+	60% {
+		border-image: linear-gradient(to top, rgba(107,187,122,1) 45%, rgba(15,24,24,1) 0%);
+	}
+	70% {
+		border-image: linear-gradient(to top, rgba(107,187,122,1) 30%, rgba(15,24,24,1) 0%);
+	}
+	80% {
+		border-image: linear-gradient(to top, rgba(107,187,122,1) 20%, rgba(15,24,24,1) 0%);
+	}
+	90% {
+		border-image: linear-gradient(to top, rgba(107,187,122,1) 10%, rgba(15,24,24,1) 0%);
+	}
+
+	100% {
+		border-image: linear-gradient(to top, rgba(107,187,122,1) 0%, rgba(15,24,24,1) 0%);
+
+	}
+}
+
 
 #battery.charging {
-	background-color: @accent-2;
+  border-width: 2px;
+  border-style: solid;
+  border-image: linear-gradient(to right, rgba(107,187,122,1) 0%, rgba(15,24,24,1) 0%);
+  border-right: 2px;
+  border-top: 0;
+  border-bottom: 0;
+  border-image-slice: 1;
+  animation: animateRight 6s linear infinite;
 }
+
+#custom-sep {
+	margin: 0 3px;
+	color: @accent-2;
+}
+
+.modules-center {
+	border-left: 3px solid @accent-2;
+	border-right: 3px solid @accent-2;
+	border-radius: 10px;
+}
+
+

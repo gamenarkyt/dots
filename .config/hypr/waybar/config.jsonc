@@ -1,40 +1,56 @@
 {
-	"layer": "bottom",
-	"position": "bottom",
-	"height": 30,
-	"margin-top": 2,
-	"margin-bottom": 0,
+	"layer": "top",
+	"position": "top",
+	"width": 1560,
+	"height": 42,
+	"margin-top": 0,
+	"margin-bottom": -5,
 	"margin-left": 0,
 	"margin-right": 0,
+	"modules-left": [
+		"hyprland/workspaces",
+		"custom/sep",
+		"cpu",
+		"temperature",
+		"custom/sep",
+		"custom/weather"
+		
 
-	"modules-left": ["hyprland/workspaces"],
+	],
 	"modules-center": [
-		"custom/menu",
-		// "custom/sep",
-		"clock"
-		// "custom/sep",
-		// "hyprland/window"
+		"custom/updates",
+		"custom/sep",
+		"clock",
+		"custom/sep",
+		"custom/notification"
 	],
 	"modules-right": [
-		// "custom/weather",
+		"tray",
+		"custom/sep",
+		"power-profiles-daemon",
 		"backlight",
 		"pulseaudio",
 		"hyprland/language",
-		"tray",
 		"battery",
-		"custom/notification"
+		"custom/powermenu"
 	],
-
 	// Left
+
+
 	"hyprland/workspaces": {
 		"format": "{icon}",
 		"on-click": "activate",
 		"format-icons": {
-			"1": "一",
-			"2": "二",
-			"3": "三",
-			"4": "四",
-			"5": "六"
+			"1": "1",
+			"2": "2",
+			"3": "3",
+			"4": "4",
+			"5": "5"
+			// "active": "",
+			// "default": "",
+			// "empty": "",
+			// "persistent": "",
+			// "urgent": ""
 		},
 		"persistent_workspaces": {
 			"1": [],
@@ -46,12 +62,40 @@
 		"all-outputs": true,
 		"sort-by-number": true
 	},
+	"cpu": {
+		"format":"{usage}% ",
+		"interval": 3
+	},
+	"temperature": {
+		"format": "{temperatureC}° ",
+		"interval": 1
 
+	},
+	"custom/weather": {
+		"format": "{}°  ",
+		"exec": "~/.config/hypr/waybar/weather.sh",
+		"interval": 200
+	},
+	
 	// Right
+	"power-profiles-daemon": {
+	  "format": "{icon} ",
+	  "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+	  "tooltip": true,
+	  "format-icons": {
+	    "default": "",
+	    "performance": "",
+	    "balanced": "",
+	    "power-saver": ""
+	  }
+	},
 	"backlight": {
 		"device": "intel_backlight",
 		"format": "{percent}% {icon} ",
-		"format-icons": ["", ""]
+		"format-icons": [
+			"",
+			""
+		]
 	},
 	"pulseaudio": {
 		"format": "{volume}% {icon}",
@@ -65,7 +109,11 @@
 			"phone": "",
 			"portable": "",
 			"car": "",
-			"default": ["", "", " "]
+			"default": [
+				"",
+				"",
+				" "
+			]
 		},
 		"scroll-step": 1,
 		"on-click": "pamixer -t",
@@ -89,22 +137,41 @@
 		},
 		"format": "{capacity}% {icon}",
 		"format-charging": "{capacity}% ",
-		"format-icons": [" ", " ", " ", " ", " "],
+		"format-icons": [
+			" ",
+			" ",
+			" ",
+			" ",
+			" "
+		],
 		"max-length": 25
 	},
 	"clock": {
 		"interval": 60,
 		"format": "{:%H:%M}  ",
-		"format-alt": "{:%A, %B %d, %Y (%R)}  ",
-		"max-length": 25
+		"format-alt": "{:%A, %B %d, %Y (%R)}  ",
+		"max-length": 50
 	},
+	"custom/powermenu": {
+		"format": " ",
+		"on-click": "wlogout"
+	},
+	
 	"custom/notification": {
 		"format": "{}  ",
 		"interval": 10,
 		"exec": "dunstctl count | grep \"[[:digit:]]\" -o | tail -1",
-		"on-click": "foot -T notifications -eH bash ~/.config/hypr/waybar/notifications.sh",
+		"on-click": "$TERM --hold -T notifications bash ~/.config/hypr/waybar/notifications.sh",
 		"on-click-middle": "dunstctl history-clear"
+	},
+	"custom/updates": {
+		"format": "{} ",
+		"interval": 10,
+		"exec": "yay -Qu | wc -l",
+		"on-click": "$TERM --hold -T updates yay -Syyuu"
+	},
+	"custom/sep": {
+		"format": "|"
 	}
-
 	//
 }
