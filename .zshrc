@@ -99,6 +99,7 @@ export EDITOR="micro"
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias ls="exa"
 alias l="exa -l --group-directories-first"
 alias ll="exa -la --group-directories-first"
 alias llt="exa -l -T -L 2 --group-directories-first"
