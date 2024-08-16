@@ -7,7 +7,9 @@ BASE_PKGS = "base-devel reflector bat exa btop neovim fastfetch yt-dlp gvfs gvfs
 
 HYPRLAND_PKGS = "hyprland waybar kitty dunst bibata-cursor-theme nwg-look catppuccin-gtk-theme-mocha rofi"
 
-SOFTWARE_PKGS = "code telegram-desktop obsidian mpv nemo nemo-fileroller"
+SOFTWARE_PKGS = "telegram-desktop obsidian mpv"
+
+KDE_SETUP_PKGS = "spectacle dolphin ark kdeconnect"
 
 FONTS_PKGS = "ttf-jetbrains-mono-nerd ttf-firacode-nerd ttf-fira-sans ttf-roboto-mono-nerd ttf-font-awesome"
 
@@ -24,7 +26,7 @@ def install_chaotic_aur():
         for line in lines:
             if line.strip() == "[chaotic-aur]":
                 return
-    subprocess.run("sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com --noconfirms", shell = True, executable="/bin/bash")
+    subprocess.run("sudo pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com --noconfirm", shell = True, executable="/bin/bash")
     subprocess.run("sudo pacman-key --lsign-key 3056513887B78AEB --noconfirm", shell = True, executable="/bin/bash")
     subprocess.run("sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' --noconfirm", shell = True, executable="/bin/bash")
     subprocess.run("sudo pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst' --noconfirm", shell = True, executable="/bin/bash")
@@ -49,11 +51,9 @@ def reflector():
 
 def main():
     # Setup env
-    # subprocess.run(f"mkdir {TMP_DIR}", shell = True, executable="/bin/bash")
-    # os.chdir(TMP_DIR)
-    install_chaotic_aur()
-    
-
+    subprocess.run(f"mkdir {TMP_DIR}", shell = True, executable="/bin/bash")
+    os.chdir(TMP_DIR)
+    # install_chaotic_aur()
 
     # subprocess.run("cat /etc/pacman.conf", shell=True, executable="/bin/bash", check=True, stdout=PIPE).stdout
     # print("out", subprocess.check_output())
@@ -61,14 +61,14 @@ def main():
     # install_yay()
     # reflector()
     # installPKG(BASE_PKGS)
-    # installPKG(HYPRLAND_PKGS)
+    # installPKG(KDE_SETUP_PKGS)
     # installPKG(SOFTWARE_PKGS)
-    # installPKG(FONTS_PKGS)
+    installPKG(FONTS_PKGS)
 
 
 if __name__ == "__main__":
     clear()
     main()
-    clear()
+    # clear()
     print(ascii.ASCII_INSTALL_DONE)
     print("\nRun yay -Syyuu\n")
